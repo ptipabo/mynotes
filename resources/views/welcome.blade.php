@@ -11,7 +11,6 @@
         <link href="./css/app.js" rel="stylesheet" />
     </head>
     <body>
-        <h1>Hello!</h1>
         <div id="root">
             
         </div>
