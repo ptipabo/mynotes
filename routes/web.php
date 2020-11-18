@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'NotesController@home');
+Route::get('notes', 'NotesController@notes');
+Route::get('notes/%id', 'NotesController@note');
+Route::get('skills','SkillsController@skills');
