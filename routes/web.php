@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'NotesController@home');
-Route::get('notes', 'NotesController@notes');
-Route::get('notes/%id', 'NotesController@note');
-Route::get('skills','SkillsController@skills');
+Route::get('/', 'HomeController@index');
+Route::get('notes', 'NotesController@index');
+Route::get('notes/%id', 'NotesController@show');
+Route::get('notes/create', 'NotesController@create');
+Route::get('skills','SkillsController@index');

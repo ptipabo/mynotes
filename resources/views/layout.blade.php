@@ -12,11 +12,13 @@
     </head>
     <body>
         <header>
-            <a href="/" title="Accueil"><img src="{{ asset('./img/mainLogo.svg') }}" alt="My Notes" /></a>
-            <ul>
-                <li><a href="/notes" title="Notes">Notes</a></li>
-                <li><a href="/skills" title="Compétences">Compétences</a></li>
-            </ul>
+            <div class="content">
+                <a href="/" title="Accueil"><img class="mainLogo" src="{{ asset('./img/mainLogo.svg') }}" alt="My Notes" /></a>
+                <ul class="mainMenu">
+                    <li><a class="button button-grey" href="/notes" title="Notes">Notes</a></li>
+                    <li><a class="button button-grey" href="/skills" title="Compétences">Compétences</a></li>
+                </ul>
+            </div>
         </header>
 
         @yield('content')

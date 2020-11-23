@@ -1,0 +1,237 @@
+/*************************************************************************************************************Configuration de base*/
+
+html * {
+  margin: 0px;
+  padding: 0px;
+  font-size: 12pt;
+  font-family: "Arial", sans-serif;
+  font-weight: 500;
+  color: #323232;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+body {
+  width: 100%;
+}
+
+/**************************************************************************Header, Sections et Footer*/
+
+header,
+section,
+footer {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #e6e6e6;
+}
+
+/**************************************************************************Titres et sous-titres*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+/**************************************************************************Header*/
+
+header {
+  background-color: #323232;
+  background-image: url("/img/headerPattern.png");
+  padding: 10px 0 10px 0;
+  width: 100%;
+  display: flex;
+  flex: row nowrap;
+  justify-content: center;
+}
+
+header .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 75%;
+}
+
+.mainLogo {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 10px 10px 5px;
+  width: 200px;
+}
+
+.mainLogo:hover {
+  filter: contrast(60%) brightness(120%);
+}
+
+.mainMenu {
+  display: flex;
+  flex: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainMenu li {
+  margin: 0 10px 0 10px;
+}
+
+/*************************************************************************Sections*/
+
+section {
+  background-color: white;
+  box-shadow: 0px 0px white;
+  text-align: center;
+  margin-bottom: 120px;
+}
+
+.pageTitle {
+  margin-top: 30px;
+  background-color: white;
+  box-shadow: 0px 0px white;
+  margin-bottom: 30px;
+}
+
+.pageTitle h1 {
+  font-size: 32pt;
+  width: 70%;
+  text-align: center;
+  color: #646464;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sectionTitle {
+  width: 90%;
+  margin: 0 auto 60px auto;
+  box-shadow: 0px 0px 20x #323232;
+  border-radius: 60px;
+}
+
+.sectionTitle h2 {
+  border-radius: 60px;
+  padding: 15px 15px 15px 30px;
+  text-align: left;
+  font-size: 24pt;
+  color: white;
+  text-shadow: 2px 2px 5px black;
+  background-image: url("/img/sectionTitlePattern.svg");
+}
+
+.title-yellow {
+  background-image: linear-gradient(#FBB03B, #F7931E);
+}
+
+.title-yellow h2 {
+  filter: hue-rotate(0deg);
+}
+
+.title-blue {
+  background-image: linear-gradient(#3873f3, #0f56c0);
+}
+
+.title-blue h2 {
+  filter: hue-rotate(180deg);
+}
+
+/***********************************************************************************Vignettes*/
+
+.thumb {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  width: 70%;
+  margin: 0 auto 70px auto;
+}
+
+.thumb > div {
+  margin: 0 10px 0 10px;
+}
+
+.thumb-notes > div {
+  width: 23%;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0px 0px 5px #969696;
+  position: relative;
+  border-radius: 5px;
+  transition: 300ms;
+}
+
+.thumb-notes > div p {
+  margin-top: 15px;
+  text-align: justify;
+}
+
+.thumb-notes > div a {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+}
+
+.thumb-notes > div:hover {
+  transition: 300ms;
+  box-shadow: 0px 20px 30px #969696;
+}
+
+/**************************************************************************************Boutons*/
+
+.button {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 6px;
+  color: white;
+  font-weight: 700;
+}
+
+.button-grey {
+  background-color: #646464;
+  background-image: linear-gradient(#969696, #646464);
+  border: 2px solid #969696;
+}
+
+.button-grey:hover {
+  background-color: #969696;
+  background-image: linear-gradient(#646464, #969696);
+  border: 2px solid #e6e6e6;
+}
+
+.button-yellow {
+  background-color: #FBB03B;
+  background-image: linear-gradient(#FBB03B, #F7931E);
+  border: 2px solid #F7931E;
+}
+
+.button-yellow:hover {
+  background-color: #F7931E;
+  background-image: linear-gradient(#F7931E, #FBB03B);
+  border: 2px solid #FBB03B;
+}
+
+.button-blue {
+  background-color: #3873f3;
+  background-image: linear-gradient(#3873f3, #0f56c0);
+  border: 2px solid #0f56c0;
+}
+
+.button-blue:hover {
+  background-color: #0f56c0;
+  background-image: linear-gradient(#0f56c0, #3873f3);
+  border: 2px solid #3873f3;
+}
+
+/**************************************************************************************Footer*/
+
+footer {
+  text-align: center;
+  width: 100%;
+  padding: 20px 0 20px 0;
+}
+

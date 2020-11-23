@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Note;
 use Illuminate\Http\Request;
 
 class NotesController extends Controller
 {
-    function home(){
-        return view('home');
+    function index(){
+        $notes = Note::all();
+        return view('notes.index', compact('notes'));
     }
 
-    function notes(){
-        return view('pages.notes');
+    function create(){
+        return view('notes.create');
     }
 
-    function note(){
-        return view('pages.note');
+    function show(){
+        return view('notes.show');
     }
 }
