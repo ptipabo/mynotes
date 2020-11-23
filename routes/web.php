@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index');
 Route::get('notes', 'NotesController@index');
-Route::get('notes/%id', 'NotesController@show');
 Route::get('notes/create', 'NotesController@create');
+Route::post('notes', 'NotesController@store');
+Route::get('notes/{note}', 'NotesController@show');
 Route::get('skills','SkillsController@index');

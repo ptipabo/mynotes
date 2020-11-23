@@ -6,7 +6,7 @@
     <h1>Notes</h1>
 </section>
 <section>
-    <a href="/notes/create">Créer une nouvelle note</a>
+    <a class="button button-yellow" href="/notes/create">Créer une nouvelle note</a>
 </section>
 <section>
     @foreach ($notes as $note)

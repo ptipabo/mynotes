@@ -17,6 +17,7 @@ class CreateNotesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('content');
+            $table->string('image');
             $table->integer('category')->nullable(false)->unsigned();
             $table->integer('status')->nullable(true)->unsigned();
             $table->timestamps();

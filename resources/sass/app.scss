@@ -1,7 +1,10 @@
 $lightGrey:rgb(230,230,230);
+$middleLightGrey:rgb(200,200,200);
 $middleGrey:rgb(150,150,150);
 $middleDarkGrey:rgb(100,100,100);
 $darkGrey:rgb(50,50,50);
+$middleYellow:#FBB03B;
+$middleDarkYellow:#F7931E;
 $middleBlue:#3873f3;
 $middleDarkBlue:#0f56c0;
 
@@ -47,12 +50,14 @@ header {
     display:flex;
     flex:row nowrap;
     justify-content: center;
+    border-bottom:2px solid $middleGrey;
+    box-shadow:0px 5px 10px $middleLightGrey;
 
     .content{
         display:flex;
         justify-content: space-between;
         align-items: center;
-        width:75%;
+        width:60%;
     }
 }
 
@@ -89,9 +94,9 @@ section{
 
 .pageTitle{
     margin-top:30px;
+    margin-bottom:50px;
     background-color: white;
     box-shadow: 0px 0px white;
-    margin-bottom:30px;
     
     h1{
         font-size:32pt;
@@ -100,13 +105,29 @@ section{
         color:$middleDarkGrey;
         margin-left:auto;
         margin-right:auto;
+        color:white;
+        text-shadow:0px 0px 10px black;
+    }
+}
+
+.homeTitle{
+    width:100%;
+    background-image: url('/img/homeBanner.jpg');
+    background-size: 100%;
+    margin-top:0px;
+    margin-bottom:50px;
+    padding:110px 0 110px 0;
+    background-repeat: no-repeat;
+    background-position: top center;
+
+    h1{
+        opacity:0;
     }
 }
 
 .sectionTitle{
-    width:90%;
     margin:0 auto 60px auto;
-    box-shadow: 0px 0px 20x $darkGrey;
+    box-shadow: 0px 10px 20px $middleDarkGrey;
     border-radius: 60px;
 
     h2{
@@ -117,6 +138,13 @@ section{
         color:white;
         text-shadow:2px 2px 5px black;
         background-image:url('/img/sectionTitlePattern.svg');
+        animation: animation 80s linear infinite;
+    }
+
+    @keyframes animation {
+        100%{
+         background-position:0px -3000px;
+       }
     }
 }
 
@@ -141,39 +169,24 @@ section{
 .thumb{
     display:flex;
     justify-content:space-evenly;
-    align-items:flex-start;
+    //align-items:flex-start;
+    align-items:stretch;
     width:70%;
     margin:0 auto 70px auto;
 
     >div{
         margin:0 10px 0 10px;
-    }
-}
-
-.thumb-notes{
-    
-    >div{
         width:23%;
         padding:20px;
         background-color: white;
         box-shadow: 0px 0px 5px $middleGrey;
         position:relative;
-        border-radius:5px;
+        border-radius:10px;
         transition:300ms;
 
-        p{
-            margin-top:15px;
-            text-align:justify;
-        }
-
-        a{
-            position:absolute;
-            display:block;
-            width:100%;
-            height:100%;
-            z-index:9999;
-            top:0;
-            left:0;
+        h3{
+            font-size:16pt;
+            margin-bottom:15px;
         }
 
         &:hover{
@@ -183,13 +196,65 @@ section{
     }
 }
 
+.thumb-notes>div{
+    p{
+        text-align:justify;
+    }
+
+    a{
+        position:absolute;
+        display:block;
+        width:100%;
+        height:100%;
+        z-index:9999;
+        top:0;
+        left:0;
+    }
+}
+
+.thumbImage{
+    width:80%;
+    min-height:30px;
+    margin-bottom:20px;
+}
+
+.starsLine{
+    display:flex;
+    flex:row nowrap;
+    justify-content:space-evenly;
+    align-items: center;
+
+    img{
+        width:15%;
+        min-width:10px;
+        margin:0 5px 0 5px;
+    }
+}
+
+.lightStar:hover{
+    filter:drop-shadow(0 0 5px $middleYellow);
+}
+
+.darkStar:hover{
+    filter:drop-shadow(0 0 5px $middleGrey);
+}
+
+.is-invalid{
+    border:1px solid red;
+}
+
+.errorMessage{
+    margin:5px 0 5px 0;
+    color:red;
+}
+
 /**************************************************************************************Boutons*/
 
 .button{
     width:100%;
     height:100%;
     padding:20px;
-    border-radius:6px;
+    border-radius:10px;
     color:white;
     font-weight:700;
 }
@@ -207,14 +272,14 @@ section{
 }
 
 .button-yellow{
-    background-color: #FBB03B;
-    background-image: linear-gradient(#FBB03B, #F7931E);
-    border:2px solid #F7931E;
+    background-color: $middleYellow;
+    background-image: linear-gradient($middleYellow, $middleDarkYellow);
+    border:2px solid $middleDarkYellow;
 
     &:hover{
-        background-color: #F7931E;
-        background-image: linear-gradient(#F7931E, #FBB03B);
-        border:2px solid #FBB03B;
+        background-color: $middleDarkYellow;
+        background-image: linear-gradient($middleDarkYellow, $middleYellow);
+        border:2px solid $middleYellow;
     }
 }
 
