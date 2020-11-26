@@ -1,0 +1,16 @@
+@extends('layout')
+
+@section('content')
+
+<section class="pageTitle">
+    <h1>Modifier une note</h1>
+</section>
+<section>
+    <form action="/notes/{{ $note->id }}" method="POST">
+        @method('PATCH')
+        @include('includes.noteForm')
+        <button type="submit" class="button button-yellow">Enregistrer les modifications</button>
+    </form>
+</section>
+
+@endsection

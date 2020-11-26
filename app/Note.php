@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Note extends Model
 {
-    protected $fillable = ['name', 'content', 'image', 'category', 'status'];
+    protected $fillable = ['title', 'content', 'image', 'category', 'status'];
+
+    protected $attributes = [
+        'status' => 0
+    ];
 
     public function getStatusAttribute($attributes){
         return [

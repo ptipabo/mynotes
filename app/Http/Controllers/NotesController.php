@@ -10,18 +10,20 @@ class NotesController extends Controller
 {
     function index(){
         $notes = Note::all();
-        return view('notes.index', compact('notes'));
+        $categories = Category::all();
+        return view('notes.index', compact('notes', 'categories'));
     }
 
     function create(){
         $categories = Category::orderBy('title')->get();
+        $note = new Note();
 
-        return view('notes.create', compact('categories'));
+        return view('notes.create', compact('categories', 'note'));
     }
 
     function store(){
         $data = request()->validate([
-            'name' => 'required',
+            'title' => 'required',
             'content' => 'required',
             'image' => 'required',
             'category' => 'required|integer',
@@ -33,7 +35,34 @@ class NotesController extends Controller
         return back();
     }
 
-    function show(){
-        return view('notes.show');
+    function show(Note $note){
+        //$note = Note::where('id', $note)->firstOrFail();
+        return view('notes.show', compact('note'));
+    }
+
+    function edit(Note $note){
+        $categories = Category::orderBy('title')->get();
+
+        return view('notes.edit', compact('note', 'categories'));
+    }
+
+    function update(Note $note){
+        $data = request()->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'image' => 'required',
+            'category' => 'required|integer',
+            'status' => 'required|integer'
+        ]);
+
+        $note->update($data);
+
+        return redirect('notes/' . $note->id);
+    }
+
+    function destroy(Note $note){
+        $note->delete();
+        
+        return redirect('notes');
     }
 }

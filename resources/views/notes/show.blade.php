@@ -3,10 +3,13 @@
 @section('content')
 
 <section class="pageTitle">
-    <h1>Note</h1>
+    <img src="../img/logos/{{ $note->image }}" alt="{{ $note->title }}" />
+    <h1>{{ $note->title }}</h1>
 </section>
 <section>
-    <p>Page réservée à une seule note</p>
+    <div>
+        <?php echo $note->content; ?>
+    </div>
 </section>
 
 @endsection

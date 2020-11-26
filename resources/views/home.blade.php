@@ -12,9 +12,9 @@
     <div class="thumb thumb-notes">
         @foreach ($lastNotes as $note)
         <div>
-            <img class="thumbImage" src="./img/{{ $note->image }}" alt="{{ $note->name }}" />
+            <img class="thumbImage" src="./img/logos/{{ $note->image }}" alt="{{ $note->title }}" />
             <h3>
-                {{ $note->name }}
+                {{ $note->title }}
             </h3>
             <div>
                 <?php
@@ -22,7 +22,7 @@
                     echo strlen($note->content)>$maxLength ? substr($note->content, 0, $maxLength).'...' : $note->content;
                 ?>
             </div>
-            <a href="/notes/{{ $note->id }}" title="{{ $note->name }}"></a>
+            <a href="/notes/{{ $note->id }}" title="{{ $note->title }}"></a>
         </div>
         @endforeach
     </div>
@@ -35,42 +35,15 @@
     <div class="thumb thumb-skills">
         @foreach ($topSkills as $skill)
             <div>
-                <img class="thumbImage" src="./img/{{ $skill->image }}" alt="{{ $skill->name }}" />
-                <h3>{{ $skill->name }}</h3>
+                <img class="thumbImage" src="./img/logos/{{ $skill->image }}" alt="{{ $skill->title }}" />
+                <h3>{{ $skill->title }}</h3>
                 <div class="starsLine">
-                @if ($skill->level == 1)
-                    @for ($i = 0; $i < 1; $i++)
+                    @for ($i = 0; $i < $skill->level; $i++)
                         <img class="lightStar" src="./img/starFull.svg" />
                     @endfor
-                    @for ($i = 0; $i < 4; $i++)
+                    @for ($i = 0; $i < (5-$skill->level); $i++)
                         <img class="darkStar" src="./img/starEmpty.svg" />
                     @endfor
-                @elseif($skill->level == 2)
-                    @for ($i = 0; $i < 2; $i++)
-                        <img class="lightStar" src="./img/starFull.svg" />
-                    @endfor
-                    @for ($i = 0; $i < 3; $i++)
-                        <img class="darkStar" src="./img/starEmpty.svg" />
-                    @endfor
-                @elseif($skill->level == 3)
-                    @for ($i = 0; $i < 3; $i++)
-                        <img class="lightStar" src="./img/starFull.svg" />
-                    @endfor
-                    @for ($i = 0; $i < 2; $i++)
-                        <img class="darkStar" src="./img/starEmpty.svg" />
-                    @endfor
-                @elseif($skill->level == 4)
-                    @for ($i = 0; $i < 4; $i++)
-                        <img class="lightStar" src="./img/starFull.svg" />
-                    @endfor
-                    @for ($i = 0; $i < 1; $i++)
-                        <img class="darkStar" src="./img/starEmpty.svg" />
-                    @endfor
-                @elseif($skill->level == 5)
-                    @for ($i = 0; $i < 5; $i++)
-                        <img class="lightStar" src="./img/starFull.svg" />
-                    @endfor
-                @endif
                 </div>
             </div>
         @endforeach
