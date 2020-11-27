@@ -25,7 +25,7 @@
                 <tr>
                     <?php $elementLink = '<a href="/notes/'.$note->id.'" title="'.$note->title.'">'; ?>
                     <td class="tableRowLink">
-                        <img src="./img/logos/{{ $note->image }}" alt="{{ $note->title }}" />
+                        <img src="./storage/logos/{{ $note->image }}" alt="{{ $note->title }}" />
                         <?php echo $elementLink; ?>
                     </td>
                     <td class="tableRowLink">
@@ -52,12 +52,25 @@
                         <?php echo $elementLink; ?>
                     </td>
                     <td class="tableEditCell">
-                        <img id="optionsImage" src="./img/options.svg" alt="Editer" />
-                        <ul class="hidden">
-                            <li><a href="/notes/{{ $note->id }}/edit" title="Modifier">Modifier</a></li>
-                            <li><a href="/notes" title="Supprimer">Supprimer</a></li>
-                        </ul>
-                        @include('notes.delete')
+                        <img id="actionsImage_{{ $note->id }}" class="actionsImage" src="./img/options.svg" alt="Editer" />
+                        <div id="elementNumber{{ $note->id }}" class="actionsMenu hidden">
+                            <ul>
+                                <li><a href="/notes/{{ $note->id }}/edit" title="Modifier">Modifier</a></li>
+                                <li id="deleteLink_{{ $note->id }}" class="deleteLink" title="Supprimer">Supprimer</li>
+                            </ul>
+                        </div>
+                        <div id="deleteForm{{ $note->id }}" class="deleteForm hidden">
+                            <div>
+                                <img src="./img/warning.svg" alt="Attention!" />
+                                <p>Cette action est définitive et irréversible, êtes-vous sûr de vouloir supprimer cette note?</p>
+                                <form action="notes/{{ $note->id }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <p class="cancelButton button button-grey">Annuler</p>
+                                    <button class="button button-red" type="submit">Confirmer la suppression</button>
+                                </form>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             @endforeach

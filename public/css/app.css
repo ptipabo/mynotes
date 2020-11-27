@@ -22,9 +22,12 @@ body {
 header,
 section,
 footer {
-  width: 75%;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
+}
+
+footer {
   background-color: #e6e6e6;
 }
 
@@ -61,14 +64,12 @@ header .content {
 }
 
 .mainLogo {
-  background-color: white;
-  border-radius: 10px;
-  padding: 10px 10px 10px 5px;
-  width: 200px;
+  margin: 10px 10px 10px 5px;
+  width: 220px;
 }
 
 .mainLogo:hover {
-  filter: contrast(60%) brightness(120%);
+  filter: drop-shadow(0px 0px 10px black);
 }
 
 .mainMenu {
@@ -85,7 +86,6 @@ header .content {
 /*************************************************************************Sections*/
 
 section {
-  background-color: white;
   box-shadow: 0px 0px white;
   text-align: center;
   margin-bottom: 80px;
@@ -93,8 +93,31 @@ section {
 
 .pageTitle {
   margin-top: 50px;
-  background-color: white;
   box-shadow: 0px 0px white;
+  position: relative;
+}
+
+.pageTitle a {
+  position: absolute;
+  top: 0;
+  left: 20px;
+}
+
+.pageTitle a::before {
+  content: url("/img/arrow-left-green.png");
+  margin-right: 5px;
+  filter: saturate(0%) brightness(50%);
+  position: absolute;
+  left: -15px;
+}
+
+.pageTitle a:hover {
+  text-decoration: underline;
+}
+
+.pageTitle a:hover::before {
+  -webkit-animation: backArrow 300ms forwards;
+          animation: backArrow 300ms forwards;
 }
 
 .pageTitle h1 {
@@ -104,14 +127,25 @@ section {
   color: #646464;
   margin-left: auto;
   margin-right: auto;
-  color: white;
-  text-shadow: 0px 0px 10px black;
+  color: #646464;
 }
 
 .pageTitle img {
   width: 12%;
   min-width: 30px;
   margin-bottom: 20px;
+}
+
+@-webkit-keyframes backArrow {
+  100% {
+    transform: translate(-15px, 0px);
+  }
+}
+
+@keyframes backArrow {
+  100% {
+    transform: translate(-15px, 0px);
+  }
 }
 
 .homeTitle {
@@ -130,6 +164,7 @@ section {
 }
 
 .sectionTitle {
+  width: 75%;
   margin: 0 auto 80px auto;
   box-shadow: 0px 10px 20px #646464;
   border-radius: 60px;
@@ -175,13 +210,17 @@ section {
   filter: hue-rotate(180deg);
 }
 
+.customContent {
+  text-align: left;
+}
+
 /***********************************************************************************Vignettes*/
 
 .thumb {
   display: flex;
   justify-content: space-evenly;
   align-items: stretch;
-  width: 70%;
+  width: 85%;
   margin: 0 auto 70px auto;
 }
 
@@ -226,7 +265,10 @@ section {
   margin-bottom: 20px;
 }
 
+/*******************************************************************************Ligne d'étoiles*/
+
 .starsLine {
+  max-width: 180px;
   display: flex;
   flex: row nowrap;
   justify-content: space-evenly;
@@ -237,21 +279,23 @@ section {
   width: 15%;
   min-width: 10px;
   margin: 0 5px 0 5px;
+  transition: 500ms;
 }
 
-.lightStar:hover {
+.starsLine:hover .lightStar {
   filter: drop-shadow(0 0 5px #FBB03B);
+  transition: 500ms;
 }
 
-.darkStar:hover {
-  filter: drop-shadow(0 0 5px #969696);
+.w-180 {
+  width: 180px;
 }
 
 /************************************************************************************Tableaux*/
 
 table {
   border-collapse: collapse;
-  width: 80%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -286,7 +330,7 @@ table tr:hover td {
   margin: 0 5px 0 5px;
 }
 
-#optionsImage:hover {
+.actionsImage:hover {
   cursor: pointer;
 }
 
@@ -322,15 +366,21 @@ form div {
   margin-bottom: 20px;
 }
 
+form textarea {
+  height: 500px;
+}
+
 form select {
   padding: 10px;
   border-radius: 6px;
+  border: 1px solid #c8c8c8;
 }
 
 .textField {
   width: 100%;
   border-radius: 6px;
   padding: 10px;
+  border: 1px solid #c8c8c8;
 }
 
 .is-invalid {
@@ -342,6 +392,93 @@ form select {
   color: red;
 }
 
+.radioButtonSpacing {
+  margin-right: 10px;
+}
+
+.extraMarginBottom {
+  margin-bottom: 40px;
+}
+
+/**************************************************************************************Menus cachés*/
+
+.actionsMenu {
+  position: relative;
+}
+
+.actionsMenu ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.actionsMenu ul li {
+  background-color: #c8c8c8;
+}
+
+.actionsMenu ul li a {
+  display: block;
+  padding: 10px;
+  margin: 0px;
+}
+
+.actionsMenu ul li:hover {
+  background-color: #e6e6e6;
+}
+
+.deleteLink {
+  padding: 10px;
+}
+
+.deleteLink:hover {
+  cursor: pointer;
+}
+
+.deleteForm {
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.deleteForm img {
+  width: 100px;
+  margin-bottom: 20px;
+  filter: hue-rotate(-55deg);
+}
+
+.deleteForm > div {
+  width: 35%;
+  margin: 30vh auto 0 auto;
+  background-color: #e6e6e6;
+  padding: 20px;
+  border: 1px solid #969696;
+  text-align: center;
+  border-radius: 6px;
+}
+
+.deleteForm > div > p {
+  margin-bottom: 20px;
+}
+
+.deleteForm form {
+  display: flex;
+  flex: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  max-width: 360px;
+  min-width: 200px;
+  margin: 0 auto 0 auto;
+}
+
+.deleteForm form p {
+  margin-right: 10px;
+}
+
 /**************************************************************************************Boutons*/
 
 a.button {
@@ -350,8 +487,9 @@ a.button {
 }
 
 .button {
-  padding: 20px;
+  padding: 10px 20px 10px 20px;
   border-radius: 10px;
+  border: none;
   color: white;
   font-weight: 700;
   cursor: pointer;
@@ -359,38 +497,34 @@ a.button {
 
 .button-grey {
   background-color: #646464;
-  background-image: linear-gradient(#969696, #646464);
-  border: 2px solid #969696;
 }
 
 .button-grey:hover {
   background-color: #969696;
-  background-image: linear-gradient(#646464, #969696);
-  border: 2px solid #e6e6e6;
 }
 
 .button-yellow {
-  background-color: #FBB03B;
-  background-image: linear-gradient(#FBB03B, #F7931E);
-  border: 2px solid #F7931E;
+  background-color: #F7931E;
 }
 
 .button-yellow:hover {
-  background-color: #F7931E;
-  background-image: linear-gradient(#F7931E, #FBB03B);
-  border: 2px solid #FBB03B;
+  background-color: #FBB03B;
+}
+
+.button-red {
+  background-color: #d32929;
+}
+
+.button-red:hover {
+  background-color: #f14c4c;
 }
 
 .button-blue {
-  background-color: #3873f3;
-  background-image: linear-gradient(#3873f3, #0f56c0);
-  border: 2px solid #0f56c0;
+  background-color: #0f56c0;
 }
 
 .button-blue:hover {
-  background-color: #0f56c0;
-  background-image: linear-gradient(#0f56c0, #3873f3);
-  border: 2px solid #3873f3;
+  background-color: #3873f3;
 }
 
 /**************************************************************************************Footer*/

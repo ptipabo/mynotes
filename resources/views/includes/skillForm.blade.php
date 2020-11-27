@@ -21,7 +21,8 @@
     @enderror
 </div>
 <div>
-    <input class="@error('image') is-invalid @enderror" type="file" name="image" palceholder="Choisissez une image..." value="{{ old('image') ?? $skill->image }}" />
+    <label for="imageUpload">Image :</label>
+    <input id="imageUpload" class="@error('image') is-invalid @enderror" type="file" name="image" palceholder="Choisissez une image..." value="{{ old('image') ?? $skill->image }}" />
     @error('image')
         <div class="errorMessage">
             {{ $errors->first('image') }}

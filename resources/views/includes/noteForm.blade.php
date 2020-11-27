@@ -16,7 +16,8 @@
     @enderror
 </div>
 <div>
-<input class="@error('image') is-invalid @enderror" type="file" name="image" palceholder="Choisissez une image..." value="{{ old('image') ?? $note->image }}" />
+    <label for="imageUpload">Image :</label>
+    <input id="imageUpload" class="@error('image') is-invalid @enderror" type="file" name="image" palceholder="Choisissez une image..." value="{{ old('image') ?? $note->image }}" />
     @error('image')
         <div class="errorMessage">
             {{ $errors->first('image') }}
@@ -27,7 +28,7 @@
     <label for="categorySelect">Catégorie :</label>
     <select class="@error('category') is-invalid @enderror" name="category" id="categorySelect">
         @foreach($categories as $category)
-            <option value="{{ $category->id }}" {{ $note->category == $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
+            <option value="{{ $category->id }}" {{ old('category') == $category->id || $note->category == $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
         @endforeach
     </select>
     @error('category')
@@ -36,11 +37,12 @@
         </div>
     @enderror
 </div>
-<div>
-    <input class="@error('status') is-invalid @enderror" type="radio" id="active" name="status" value="1" {{ $note->status == 'Actif' ? 'checked' : '' }} />
-    <label for="active">Active</label>
-    <input class="@error('status') is-invalid @enderror" type="radio" id="inactive" name="status" value="0" {{ $note->status == 'Inactif' ? 'checked' : '' }} />
-    <label for="inactive">Inactive</label>
+<div class="extraMarginBottom">
+    <label>Status : </label>
+    <input class="@error('status') is-invalid @enderror" type="radio" id="active" name="status" value="1" {{ old('status') == '1' || $note->status == 'Actif' ? 'checked' : '' }} />
+    <label class="radioButtonSpacing" for="active">Actif</label>
+    <input class="@error('status') is-invalid @enderror" type="radio" id="inactive" name="status" value="0" {{ old('status') == '0' || $note->status == 'Inactif' ? 'checked' : '' }} />
+    <label for="inactive">Inactif</label>
     @error('status')
         <div class="errorMessage">
             {{ $errors->first('status') }}

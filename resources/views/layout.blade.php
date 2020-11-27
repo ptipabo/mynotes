@@ -9,11 +9,14 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
         <link href="{{ url('./css/app.css') }}" rel="stylesheet" />
+
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>tinymce.init({selector:'textarea'});</script>
     </head>
     <body>
         <header>
             <div class="content">
-                <a href="/" title="Accueil"><img class="mainLogo" src="{{ asset('./img/mainLogo.svg') }}" alt="My Notes" /></a>
+                <a href="/" title="Accueil"><img class="mainLogo" src="{{ asset('./img/mainLogoWhite.svg') }}" alt="My Notes" /></a>
                 <ul class="mainMenu">
                     <li><a class="button button-grey" href="/notes" title="Notes">Notes</a></li>
                     <li><a class="button button-grey" href="/skills" title="Compétences">Compétences</a></li>
@@ -27,6 +30,6 @@
             <p>&copy; Copyright Thibaut Van Callemont 2020</p>
         </footer>
         
-        <!--<script src="./js/app.js"></script>-->
+        <script src="{{ url('./js/app.js') }}"></script>
     </body>
 </html>

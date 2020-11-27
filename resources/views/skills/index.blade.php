@@ -23,18 +23,20 @@
             @foreach ($skills as $skill)
                 <tr>
                     <td>
-                        <img src="./img/logos/{{ $skill->image }}" alt="{{ $skill->title }}" />
+                        <img src="./storage/logos/{{ $skill->image }}" alt="{{ $skill->title }}" />
                     </td>
                     <td>
                         {{ $skill->title }}
                     </td>
-                    <td>
-                        @for ($i = 0; $i < $skill->level; $i++)
-                            <img class="lightStar" src="./img/starFull.svg" />
-                        @endfor
-                        @for ($i = 0; $i < (5-$skill->level); $i++)
-                            <img class="darkStar" src="./img/starEmpty.svg" />
-                        @endfor
+                    <td class="w-180">
+                    <div class="starsLine" title="{{ $levels[$skill->level-1] }}">
+                            @for ($i = 0; $i < $skill->level; $i++)
+                                <img class="lightStar" src="./img/starFull.svg" />
+                            @endfor
+                            @for ($i = 0; $i < (5-$skill->level); $i++)
+                                <img class="darkStar" src="./img/starEmpty.svg" />
+                            @endfor
+                        </div>
                     </td>
                     @if($skill->level == 1)
                         <td>
@@ -58,12 +60,25 @@
                         </td>
                     @endif
                     <td class="tableEditCell">
-                        <img id="optionsImage" src="./img/options.svg" alt="Editer" />
-                        <ul class="hidden">
-                            <li><a href="/skills/{{ $skill->id }}/edit" title="Modifier">Modifier</a></li>
-                            <li><a href="/skills" title="Supprimer">Supprimer</a></li>
-                        </ul>
-                        @include('skills.delete')
+                        <img id="actionsImage_{{ $skill->id }}" class="actionsImage" src="./img/options.svg" alt="Editer" />
+                        <div id="elementNumber{{ $skill->id }}" class="actionsMenu hidden">
+                            <ul>
+                                <li><a href="/skills/{{ $skill->id }}/edit" title="Modifier">Modifier</a></li>
+                                <li id="deleteLink_{{ $skill->id }}" class="deleteLink" title="Supprimer">Supprimer</li>
+                            </ul>
+                        </div>
+                        <div id="deleteForm{{ $skill->id }}" class="deleteForm hidden">
+                            <div>
+                                <img src="./img/warning.svg" alt="Attention!" />
+                                <p>Cette action est définitive et irréversible, êtes-vous sûr de vouloir supprimer cette compétence?</p>
+                                <form action="skills/{{ $skill->id }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <p class="cancelButton button button-grey">Annuler</p>
+                                    <button class="button button-red" type="submit">Confirmer la suppression</button>
+                                </form>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             @endforeach

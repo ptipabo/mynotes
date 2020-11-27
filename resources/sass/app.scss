@@ -5,8 +5,11 @@ $middleDarkGrey:rgb(100,100,100);
 $darkGrey:rgb(50,50,50);
 $middleYellow:#FBB03B;
 $middleDarkYellow:#F7931E;
+$middleRed:#f14c4c;
+$middleDarkRed:#d32929;
 $middleBlue:#3873f3;
 $middleDarkBlue:#0f56c0;
+$testColor:rgba(255,0,0,0.5);
 
 /*************************************************************************************************************Configuration de base*/
 
@@ -28,9 +31,12 @@ body{
 /**************************************************************************Header, Sections et Footer*/
 
 header, section, footer{
-    width:75%;
+    width:60%;
     margin-left:auto;
     margin-right:auto;
+}
+
+footer{
     background-color: $lightGrey;
 }
 
@@ -62,13 +68,11 @@ header {
 }
 
 .mainLogo{
-    background-color: white;
-    border-radius:10px;
-    padding:10px 10px 10px 5px;
-    width:200px;
+    margin:10px 10px 10px 5px;
+    width:220px;
     
     &:hover{
-        filter:contrast(60%) brightness(120%);
+        filter:drop-shadow(0px 0px 10px black);
     }
 }
 
@@ -86,18 +90,38 @@ header {
 /*************************************************************************Sections*/
 
 section{
-    background-color: white;
     box-shadow: 0px 0px white;
     text-align:center;
-    //margin-top:120px;
     margin-bottom:80px;
 }
 
 .pageTitle{
     margin-top:50px;
-    background-color: white;
     box-shadow: 0px 0px white;
+    position:relative;
     
+    a{
+        position:absolute;
+        top:0;
+        left:20px;
+
+        &::before{
+            content:url('/img/arrow-left-green.png');
+            margin-right:5px;
+            filter:saturate(0%) brightness(50%);
+            position:absolute;
+            left:-15px;
+        }
+
+        &:hover{
+            text-decoration: underline;
+            
+            &::before{
+                animation: backArrow 300ms forwards;
+            }
+        }
+    }
+
     h1{
         font-size:32pt;
         width:70%;
@@ -105,14 +129,20 @@ section{
         color:$middleDarkGrey;
         margin-left:auto;
         margin-right:auto;
-        color:white;
-        text-shadow:0px 0px 10px black;
+        color:$middleDarkGrey;
+        //text-shadow:0px 0px 10px black;
     }
 
     img{
         width:12%;
         min-width:30px;
         margin-bottom:20px;
+    }
+}
+
+@keyframes backArrow {
+    100%{
+        transform: translate(-15px, 0px);
     }
 }
 
@@ -132,6 +162,7 @@ section{
 }
 
 .sectionTitle{
+    width:75%;
     margin:0 auto 80px auto;
     box-shadow: 0px 10px 20px $middleDarkGrey;
     border-radius: 60px;
@@ -170,14 +201,17 @@ section{
     }
 }
 
+.customContent{
+    text-align: left;
+}
+
 /***********************************************************************************Vignettes*/
 
 .thumb{
     display:flex;
     justify-content:space-evenly;
-    //align-items:flex-start;
     align-items:stretch;
-    width:70%;
+    width:85%;
     margin:0 auto 70px auto;
 
     >div{
@@ -224,7 +258,10 @@ section{
     margin-bottom:20px;
 }
 
+/*******************************************************************************Ligne d'étoiles*/
+
 .starsLine{
+    max-width:180px;
     display:flex;
     flex:row nowrap;
     justify-content:space-evenly;
@@ -234,22 +271,26 @@ section{
         width:15%;
         min-width:10px;
         margin:0 5px 0 5px;
+        transition:500ms;
+    }
+
+    &:hover{
+        .lightStar{
+            filter:drop-shadow(0 0 5px $middleYellow);
+            transition:500ms;
+        }
     }
 }
 
-.lightStar:hover{
-    filter:drop-shadow(0 0 5px $middleYellow);
-}
-
-.darkStar:hover{
-    filter:drop-shadow(0 0 5px $middleGrey);
+.w-180{
+    width:180px;
 }
 
 /************************************************************************************Tableaux*/
 
 table{
     border-collapse: collapse;
-    width:80%;
+    width:100%;
     margin-left:auto;
     margin-right:auto;
 
@@ -287,7 +328,7 @@ table{
     margin:0 5px 0 5px;
 }
 
-#optionsImage:hover{
+.actionsImage:hover{
     cursor:pointer;
 }
 
@@ -322,9 +363,14 @@ form{
         margin-bottom:20px;
     }
 
+    textarea{
+        height:500px;
+    }
+
     select{
         padding:10px;
         border-radius:6px;
+        border:1px solid $middleLightGrey;
     }
 }
 
@@ -332,6 +378,7 @@ form{
     width:100%;
     border-radius:6px;
     padding:10px;
+    border:1px solid $middleLightGrey;
 }
 
 .is-invalid{
@@ -343,6 +390,92 @@ form{
     color:red;
 }
 
+.radioButtonSpacing{
+    margin-right:10px;
+}
+
+.extraMarginBottom{
+    margin-bottom:40px;
+}
+
+/**************************************************************************************Menus cachés*/
+
+.actionsMenu{
+    position:relative;
+
+    ul{
+        position:absolute;
+        top:0;
+        left:0;
+
+        li{
+            background-color:$middleLightGrey;
+
+            a{
+                display:block;
+                padding:10px;
+                margin:0px;
+            }
+
+            &:hover{
+                background-color:$lightGrey;
+            }
+        }
+    }
+}
+
+.deleteLink{
+    padding:10px;
+
+    &:hover{
+        cursor:pointer;
+    }
+}
+
+.deleteForm{
+    position:fixed;
+    z-index:9999;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background-color: rgba(255,255,255,0.5);
+
+    img{
+        width:100px;
+        margin-bottom:20px;
+        filter:hue-rotate(-55deg);
+    }
+
+    >div{
+        width:35%;
+        margin:30vh auto 0 auto;
+        background-color: $lightGrey;
+        padding:20px;
+        border:1px solid $middleGrey;
+        text-align:center;
+        border-radius: 6px;
+        >p{
+            margin-bottom:20px;
+        }
+    }
+
+    form{
+        display:flex;
+        flex:row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        width:60%;
+        max-width:360px;
+        min-width:200px;
+        margin:0 auto 0 auto;
+
+        p{
+            margin-right:10px;
+        }
+    }
+}
+
 /**************************************************************************************Boutons*/
 
 a.button{
@@ -351,8 +484,9 @@ a.button{
 }
 
 .button{
-    padding:20px;
+    padding:10px 20px 10px 20px;
     border-radius:10px;
+    border:none;
     color:white;
     font-weight:700;
     cursor:pointer;
@@ -360,37 +494,34 @@ a.button{
 
 .button-grey{
     background-color: $middleDarkGrey;
-    background-image: linear-gradient($middleGrey, $middleDarkGrey);
-    border:2px solid $middleGrey;
 
     &:hover{
         background-color: $middleGrey;
-        background-image: linear-gradient($middleDarkGrey, $middleGrey);
-        border:2px solid $lightGrey;
     }
 }
 
 .button-yellow{
-    background-color: $middleYellow;
-    background-image: linear-gradient($middleYellow, $middleDarkYellow);
-    border:2px solid $middleDarkYellow;
+    background-color: $middleDarkYellow;
+
 
     &:hover{
-        background-color: $middleDarkYellow;
-        background-image: linear-gradient($middleDarkYellow, $middleYellow);
-        border:2px solid $middleYellow;
+        background-color: $middleYellow;
+    }
+}
+
+.button-red{
+    background-color: $middleDarkRed;
+
+    &:hover{
+        background-color: $middleRed;
     }
 }
 
 .button-blue{
-    background-color: $middleBlue;
-    background-image: linear-gradient($middleBlue, $middleDarkBlue);
-    border:2px solid $middleDarkBlue;
+    background-color: $middleDarkBlue;
 
     &:hover{
-        background-color: $middleDarkBlue;
-        background-image: linear-gradient($middleDarkBlue, $middleBlue);
-        border:2px solid $middleBlue;
+        background-color: $middleBlue;
     }
 }
 
